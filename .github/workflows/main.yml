@@ -23,7 +23,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: alisha-arya/testnodejsapp   # fix typo: testjodejsapp → testnodejsapp
+          images: alarya/testnodejsapp   # fix typo: testjodejsapp → testnodejsapp
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
