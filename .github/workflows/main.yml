@@ -23,12 +23,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: alarya/testnodejsapp   # fix typo: testjodejsapp → testnodejsapp
+          images: alarya/testnodejsapp
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./app
+          file: ./app/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
