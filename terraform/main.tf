@@ -1,49 +1,41 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
 provider "aws" {
-
   region = "ap-south-1"
-
 }
 
 variable "bucket_name" {
-
-  description = "S3 bucket name"
-
+  type = string
 }
 
 resource "aws_s3_bucket" "this" {
-
-  bucket = my-alisha-terraform-s3-12345"
-
+  bucket = replace(trimspace(var.bucket_name), "\r", "")
 }
 
 resource "aws_s3_bucket_versioning" "this" {
-
   bucket = aws_s3_bucket.this.id
 
   versioning_configuration {
-
     status = "Enabled"
-
   }
-
 }
 
 resource "aws_s3_bucket_public_access_block" "this" {
-
   bucket = aws_s3_bucket.this.id
 
   block_public_acls       = true
-
   block_public_policy     = true
-
   ignore_public_acls      = true
-
   restrict_public_buckets = true
-
 }
 
 output "bucket_name" {
-
   value = aws_s3_bucket.this.bucket
-
 }
