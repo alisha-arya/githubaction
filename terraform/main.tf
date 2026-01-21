@@ -12,7 +12,7 @@ variable "bucket_name" {
 
 resource "aws_s3_bucket" "this" {
 
-  bucket = var.bucket_name
+  bucket = my-alisha-terraform-s3-12345"
 
 }
 
